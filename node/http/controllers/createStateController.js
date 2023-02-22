@@ -1,4 +1,5 @@
 import * as express from "express";
+import { uuid } from 'uuidv4';
 import { stateUrl } from "../util/util.js";
 
 const router = express.Router();
@@ -10,22 +11,19 @@ export const createStateController = router.post("/", async (req, res) => {
 
   const state = [
     {
-      key: "order",
+      key: uuid(),
       value: data,
     },
   ];
 
   try {
-    const response = await fetch(stateUrl, {
+    await fetch(stateUrl, {
       method: "POST",
       body: JSON.stringify(state),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (!response.ok) {
-      throw "Failed to persist state.";
-    }
 
     res.status(200).json({ msg: `Created order with Order ID: ${orderId}` });
   } catch (error) {
