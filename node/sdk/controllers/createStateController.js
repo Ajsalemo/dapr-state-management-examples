@@ -1,13 +1,11 @@
 import * as express from "express";
-import { uuid } from 'uuidv4';
-import { stateUrl } from "../util/util.js";
-
+import { uuid } from "uuidv4";
+import { dapr } from "../util/util.js";
 const router = express.Router();
 
 export const createStateController = router.post("/", async (req, res) => {
   const data = req.body.data;
   const orderId = data.orderId;
-  console.log(`New order ID: ${orderId}`);
 
   const state = [
     {
@@ -17,13 +15,7 @@ export const createStateController = router.post("/", async (req, res) => {
   ];
 
   try {
-    await fetch(stateUrl, {
-      method: "POST",
-      body: JSON.stringify(state),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    await dapr.client.state.save(dapr.stateStoreName, state);
 
     res.status(200).json({ msg: `Created order with Order ID: ${orderId}` });
   } catch (error) {

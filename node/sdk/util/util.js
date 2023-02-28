@@ -1,4 +1,8 @@
-const daprPort = process.env.DAPR_HTTP_PORT || 3500;
-const stateStoreName = "statestore";
+import { DaprClient } from "@dapr/dapr";
 
-export const stateUrl = `http://localhost:${daprPort}/v1.0/state/${stateStoreName}`;
+export const dapr = {
+  client: new DaprClient(daprHost, daprPort),
+  daprPort: process.env.DAPR_HTTP_PORT || 3500,
+  stateStoreName: "statestore",
+  daprHost: "127.0.0.1",
+};
