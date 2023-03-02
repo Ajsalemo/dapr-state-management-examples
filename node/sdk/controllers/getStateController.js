@@ -1,14 +1,13 @@
 import * as express from "express";
-import { stateUrl } from "../util/util.js";
-
+import { dapr } from "../util/util.js";
 const router = express.Router();
 
 export const getStateController = router.get("/:id", async (req, res) => {
   const orderId = req.params.id;
 
   try {
-    const response = await fetch(`${stateUrl}/${orderId}`);
-    const orders = await response.json();
+    const getState = await dapr.client.state.get(dapr.stateStoreName, orderId);
+    const orders = getState.toString()
     
     res.json({ orders: orders });
   } catch (error) {
