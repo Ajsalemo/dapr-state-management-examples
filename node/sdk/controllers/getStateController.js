@@ -6,12 +6,14 @@ export const getStateController = router.get("/:id", async (req, res) => {
   const orderId = req.params.id;
 
   try {
-    const getState = await dapr.client.state.get(dapr.stateStoreName, orderId);
-    const orders = getState.toString()
+    const res = await dapr.client.state.get(dapr.stateStoreName, orderId);
+    console.log(res)
     
-    res.json({ orders: orders });
+    res.json({ orders: res });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error });
   }
 });
+
+

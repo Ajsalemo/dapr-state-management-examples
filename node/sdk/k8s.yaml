@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: dapr-state-management-examples-node-http:latest  
+        image: dapr-state-management-examples-node-sdk:latest  
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
