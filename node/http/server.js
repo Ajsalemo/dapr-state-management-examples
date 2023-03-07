@@ -1,12 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser"
-import { homeController } from "../controllers/homeController.js";
-import { createStateController } from "../controllers/createStateController.js";
-import { getStateController } from "../controllers/getStateController.js";
-import { deleteStateController } from "../controllers/deleteStateController.js";
+import { homeController } from "./controllers/homeController.js";
+import { createStateController } from "./controllers/createStateController.js";
+import { getStateController } from "./controllers/getStateController.js";
+import { deleteStateController } from "./controllers/deleteStateController.js";
 
 const app = express()
-const port = process.env.APP_PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

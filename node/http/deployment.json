@@ -111,7 +111,7 @@
                                 "value": "[parameters('storageAccountContainer')]"
                             }
                         ],
-                        "scopes": [ "nodeappsdk" ]
+                        "scopes": [ "nodeapphttp" ]
                     }
                 }
             ]
@@ -119,7 +119,7 @@
         {
             "type": "Microsoft.App/containerApps",
             "apiVersion": "2022-03-01",
-            "name": "nodeappsdk",
+            "name": "nodeapphttp",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.App/managedEnvironments/', parameters('environment_name'))]"
@@ -147,7 +147,7 @@
                     ],
                     "dapr": {
                         "enabled": true,
-                        "appId": "nodeappsdk",
+                        "appId": "nodeapphttp",
                         "appProcotol": "http",
                         "appPort": 3000
                     }
@@ -156,7 +156,7 @@
                     "containers": [
                         {
                             "image": "[concat(parameters('azureContainerRegistryServerUrl'), '/', parameters('azureContainerRegistryImageName'), ':', parameters('azureContainerRegistryImageTag'))]",
-                            "name": "nodeappsdk",
+                            "name": "nodeapphttp",
                             "resources": {
                                 "cpu": 0.5,
                                 "memory": "1.0Gi"
