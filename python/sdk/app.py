@@ -1,11 +1,12 @@
 from flask import Flask, jsonify, request
-import uuid, json
+import uuid
 import requests
+from dapr.clients import DaprClient
 
 app = Flask(__name__)
 
-dapr_uri = "http://localhost:3500/v1.0/state"
 dapr_state_store = "statestore"
+d = DaprClient()
 
 @app.route("/")
 def index():
@@ -16,7 +17,6 @@ def index():
 def create_order():
     data = request.json
     id = str(uuid.uuid4())
-    headers = {'Content-Type': 'application/json'}
     s = [
             {
                 "key": id,
@@ -25,7 +25,7 @@ def create_order():
         ]
     
     try:
-        requests.post(f"{dapr_uri}/{dapr_state_store}", headers=headers, data=json.dumps(s))
+        d.save_state(dapr_state_store, key=id, value=s)
 
         return jsonify({ "msg": f"Created order with Order ID: {id}" })
     except Exception as e:
