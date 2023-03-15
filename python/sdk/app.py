@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request
-import uuid
-import requests
+import uuid, json
 from dapr.clients import DaprClient
 
 app = Flask(__name__)
@@ -10,7 +9,7 @@ d = DaprClient()
 
 @app.route("/")
 def index():
-    return jsonify({ "msg": "dapr-state-management-examples-python-http" })
+    return jsonify({ "msg": "dapr-state-management-examples-python-sdk" })
 
 
 @app.route("/order/create", methods=['POST'])
@@ -25,7 +24,7 @@ def create_order():
         ]
     
     try:
-        d.save_state(dapr_state_store, key=id, value=s)
+        d.save_state(dapr_state_store, key=id, value=json.dumps(s))
 
         return jsonify({ "msg": f"Created order with Order ID: {id}" })
     except Exception as e:
@@ -35,7 +34,19 @@ def create_order():
 @app.route("/order/get/<string:id>")
 def get_order(id):
     try:
-        r = requests.get(f"{dapr_uri}/{dapr_state_store}/{id}")
+        r = d.get_state(dapr_state_store, key=id)
+        
+        print(r.json())
+        return jsonify({ "orders": r.json() })
+    except Exception as e:
+        print(e)
+        return jsonify({ "error": str(e) })
+    
+
+@app.route("/order/delete/<string:id>")
+def delete_order(id):
+    try:
+        r = d.delete_state(dapr_state_store, key=id)
         
         print(r.json())
         return jsonify({ "orders": r.json() })
