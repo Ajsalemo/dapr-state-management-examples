@@ -36,7 +36,6 @@ def get_order(id):
     try:
         r = d.get_state(dapr_state_store, key=id)
         
-        print(r.json())
         return jsonify({ "orders": r.json() })
     except Exception as e:
         print(e)
@@ -48,8 +47,7 @@ def delete_order(id):
     try:
         r = d.delete_state(dapr_state_store, key=id)
         
-        print(r.json())
-        return jsonify({ "orders": r.json() })
+        return jsonify({ "msg": f"Deleted order with Order ID: {id}" })
     except Exception as e:
         print(e)
         return jsonify({ "error": str(e) })
