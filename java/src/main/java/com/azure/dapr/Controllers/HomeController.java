@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
-    String message = "dapr-state-management-exampes-java";
+    String message = "dapr-state-management-examples-java";
 
     @GetMapping("/")
     public String index() {
