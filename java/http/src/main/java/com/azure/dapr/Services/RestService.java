@@ -1,8 +1,5 @@
 package com.azure.dapr.Services;
 
-import java.util.List;
-
-import org.json.JSONObject;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +17,7 @@ public class RestService {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public ResponseEntity<CreateStateController> createState(HttpEntity<List<JSONObject>> entity, Class<CreateStateController> className) {
+    public ResponseEntity<CreateStateController> createState(HttpEntity<String> entity, Class<CreateStateController> className) {
         return this.restTemplate.postForEntity(url, entity, className);
     }
 }
