@@ -32,7 +32,9 @@ public class CreateStateController {
     @PostMapping("/order/create")
     public ResponseEntity<String> createOrder(@RequestBody Order order) throws IOException, InterruptedException, URISyntaxException {
         UUID uuid = UUID.randomUUID();
-        Order newOrder = new Order("1");
+
+        order.setData(order.data);
+        Order newOrder = new Order(order.getData());
         State state = new State(uuid, newOrder);
 
         State[] payload = new State[] { state };

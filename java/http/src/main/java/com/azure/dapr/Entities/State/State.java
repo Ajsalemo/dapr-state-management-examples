@@ -11,5 +11,5 @@ import lombok.Getter;
 @Getter
 public class State {
     public UUID key;
-    public Order data;
+    public Order value;
 }

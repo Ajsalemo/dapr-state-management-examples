@@ -5,7 +5,6 @@ const router = express.Router();
 
 export const deleteStateController = router.delete("/:id", async (req, res) => {
   const orderId = req.params.id;
-  console.log(req.params);
   try {
     await dapr.client.state.delete(dapr.stateStoreName, orderId);
 
