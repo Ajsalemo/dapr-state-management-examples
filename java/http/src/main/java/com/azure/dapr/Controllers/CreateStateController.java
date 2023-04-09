@@ -2,10 +2,8 @@ package com.azure.dapr.Controllers;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +22,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CreateStateController {
     @Autowired
     private HttpService httpService;
-    private static final HttpClient httpClient = HttpClient.newBuilder()
-            .version(HttpClient.Version.HTTP_2)
-            .connectTimeout(Duration.ofSeconds(10))
-            .build();
 
     @PostMapping("/order/create")
-    public ResponseEntity<String> createOrder(@RequestBody Order order) throws IOException, InterruptedException, URISyntaxException {
+    public ResponseEntity<String> createOrder(@RequestBody Order order)
+            throws IOException, InterruptedException, URISyntaxException {
         UUID uuid = UUID.randomUUID();
 
         order.setData(order.data);
@@ -44,8 +39,7 @@ public class CreateStateController {
 
         HttpRequest request = httpService
                 .createState(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(payload)));
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response);
+        HttpService.restHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         return new ResponseEntity<String>("Order created with ID: " + uuid, HttpStatus.CREATED);
     }

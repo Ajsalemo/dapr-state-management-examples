@@ -8,24 +8,23 @@ import java.net.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.azure.dapr.Services.HttpService;
 
 @RestController
-public class GetStateController {
+public class DeleteStateController {
     @Autowired
     private HttpService httpService;
 
-    @GetMapping("/order/get/{uid}")
-    public ResponseEntity<String> getStateResponse(@PathVariable String uid)
+    @DeleteMapping("/order/delete/{uid}")
+    public ResponseEntity<String> deleteStateResponse(@PathVariable String uid)
             throws URISyntaxException, IOException, InterruptedException {
-        HttpRequest request = httpService.getState(uid);
-        HttpResponse<String> response = HttpService.restHttpClient().send(request,
-                HttpResponse.BodyHandlers.ofString());
+        HttpRequest request = httpService.deleteState(uid);
+        HttpService.restHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        return new ResponseEntity<String>("Orders: " + response.body(), HttpStatus.OK);
+        return new ResponseEntity<String>("Deleted order with Order ID: : " + uid, HttpStatus.OK);
     }
 }
