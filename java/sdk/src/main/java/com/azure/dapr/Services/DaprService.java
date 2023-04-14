@@ -13,6 +13,6 @@ public class DaprService {
     }
 
     public static Mono<Void> createState(String uuid, String request) {
-        return daprClient().saveState("statestore", null, null);
+        return daprClient().saveState("statestore", uuid, request);
     }
 }
