@@ -2,6 +2,8 @@ package com.azure.dapr.Services;
 
 import org.springframework.stereotype.Service;
 
+import com.azure.dapr.Entities.State.State;
+
 import io.dapr.client.DaprClient;
 import io.dapr.client.DaprClientBuilder;
 import reactor.core.publisher.Mono;
@@ -12,7 +14,7 @@ public class DaprService {
         return new DaprClientBuilder().build();
     }
 
-    public static Mono<Void> createState(String uuid, String request) {
-        return daprClient().saveState("statestore", uuid, request);
+    public static Mono<Void> createState(String uuid, State[] payload) {
+        return daprClient().saveState("statestore", uuid, payload);
     }
 }

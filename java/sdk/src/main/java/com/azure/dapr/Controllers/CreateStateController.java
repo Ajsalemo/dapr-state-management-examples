@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.azure.dapr.Entities.Order.Order;
 import com.azure.dapr.Entities.State.State;
 import com.azure.dapr.Services.DaprService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class CreateStateController {
@@ -24,9 +23,8 @@ public class CreateStateController {
         State state = new State(uuid, newOrder);
 
         State[] payload = new State[] { state };
-        ObjectMapper objectMapper = new ObjectMapper();
         // Save state with the DaprService
-        DaprService.createState(uuid.toString(), objectMapper.writeValueAsString(payload)).block();
+        DaprService.createState(uuid.toString(), payload).block();
         return new ResponseEntity<String>("Order created with ID: " + uuid, HttpStatus.CREATED);
     }
 }
