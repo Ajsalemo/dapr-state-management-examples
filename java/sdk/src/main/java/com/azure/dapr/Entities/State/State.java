@@ -2,14 +2,14 @@ package com.azure.dapr.Entities.State;
 
 import java.util.UUID;
 
-import com.azure.dapr.Entities.Order.Order;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class State {
+    public State(UUID uuid, Object order) {
+    }
     public UUID key;
-    public Order value;
+    public Object value;
 }
