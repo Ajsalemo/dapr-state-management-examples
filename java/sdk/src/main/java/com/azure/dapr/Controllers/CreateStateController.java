@@ -16,7 +16,9 @@ public class CreateStateController {
     @PostMapping("/order/create")
     public ResponseEntity<String> createState(@RequestBody Object order) throws Exception {
         UUID uuid = UUID.randomUUID();
-        State state = new State(uuid, order);
+        State state = new State();
+        state.setKey(uuid);
+        state.setValue(order);
         // Save state with the DaprService
         DaprService.createState(uuid.toString(), state).block();
         return new ResponseEntity<String>("Order created with ID: " + uuid, HttpStatus.CREATED);
