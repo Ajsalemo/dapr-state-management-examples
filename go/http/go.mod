@@ -2,9 +2,11 @@ module github.com/azureossd/dapr-state-management-examples/go/http
 
 go 1.20
 
+require github.com/google/uuid v1.3.0
+
 require (
-	github.com/dapr/go-sdk v1.7.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/kr/pretty v0.3.1 // indirect
 	golang.org/x/net v0.5.0 // indirect
 	golang.org/x/sys v0.4.0 // indirect
 	golang.org/x/text v0.6.0 // indirect

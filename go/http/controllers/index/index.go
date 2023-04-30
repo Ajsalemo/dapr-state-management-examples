@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func Index(w http.ResponseWriter, r *http.Request) {
+func IndexController(w http.ResponseWriter, r *http.Request) {
 	m := map[string]string{"msg": "dapr-state-management-examples-go-http"}
 	e := json.NewEncoder(w)
 	e.Encode(m)
