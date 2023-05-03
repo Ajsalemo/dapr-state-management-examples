@@ -12,12 +12,6 @@ import (
 
 func CreateStateController(w http.ResponseWriter, r *http.Request) {
 	uuid := uuid.New()
-	// msg := fmt.Sprintf("Created order with Order ID: %v", uuid)
-
-	// res, err := http.NewRequest(http.MethodPost, "http://localhost:3500/v1.0/state/statestore")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
 	// Create these structs to mimic the shape of the incoming POST request
 	// So we can marshal this struct into JSON
 	type Order struct {
@@ -44,6 +38,11 @@ func CreateStateController(w http.ResponseWriter, r *http.Request) {
 	}	
 
 	o, _ := json.Marshal(a)
+	// res, err := http.NewRequest(http.MethodPost, "http://localhost:3500/v1.0/state/statestore")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
 	fmt.Println(string(o))
 	
 	m := map[string]string{"msg": fmt.Sprintf("Order created with ID: %v", uuid.String())}
