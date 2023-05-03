@@ -18,29 +18,35 @@ func CreateStateController(w http.ResponseWriter, r *http.Request) {
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }
-
-	type order struct {
-		Key string `json:"key"`
-		Value string `json:"value"`
+	// Create these structs to mimic the shape of the incoming POST request
+	// So we can marshal this struct into JSON
+	type Order struct {
+		OrderId string `json:"orderId"`
 	}
 
+	type State struct {
+		Key string `json:"key"`
+		Data Order `json:"data"`
+	}
+	// Initialize State with a default key uuid 
+	state := &State{
+		Key: uuid.String(),
+	}
+	// Push the struct into an array
+	s := []State{}
+	a := append(s, *state)
 	requestBody, err := ioutil.ReadAll(r.Body)
-	s := string(requestBody)
+
+	json.Unmarshal([]byte(requestBody), &a)
+
 	if err != nil {
 		log.Fatal(err)
-	}
+	}	
 
-	state := []order{
-		{
-			Key: uuid.String(),
-			Value: s,
-		},
-	}
-	
-	o, _ := json.Marshal(state)
+	o, _ := json.Marshal(a)
 	fmt.Println(string(o))
-
-	m := map[string]string{"msg": "T"}
+	
+	m := map[string]string{"msg": fmt.Sprintf("Order created with ID: %v", uuid.String())}
 	e := json.NewEncoder(w)
 	e.Encode(m)
 }
