@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
+	"io"
 
 	"github.com/google/uuid"
 )
@@ -18,48 +18,41 @@ func CreateStateController(w http.ResponseWriter, r *http.Request) {
 	type OrderData struct {
 		OrderId string `json:"orderId"`
 	}
-	
+
 	type Order struct {
 		Data OrderData `json:"data"`
 	}
 
 	type State struct {
-		Key  string `json:"key"`
+		Key   string `json:"key"`
 		Value Order `json:"value"`
 	}
 
 	requestBody, err := io.ReadAll(r.Body)
-
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	var s State
-	s.Key = uuid.String()
-	//json.Unmarshal([]byte(requestBody), &s)
-
+	// Give the "Key" a default value of a uuid
+	state := []State{
+		{
+			Key: uuid.String(),
+		},
+	}
+	// Unmarshal the request body into the struct
+	json.Unmarshal(requestBody, &state[0].Value)
+	// Marshal the Struct Array into JSON to send in the POST request to DApr
+	t, err := json.Marshal(state)
+	// If there is an error marhsalling state, return it
 	if err != nil {
 		log.Fatal(err)
 	}
- 
-	a := []State{}
-	j := append(a, s)
+	res, err := http.Post("http://localhost:3500/v1.0/state/statestore", "application/json", bytes.NewBuffer(t))
 
-	o, _ := json.Marshal(j)
-
-	res, err := http.Post("http://localhost:3500/v1.0/state/statestore", "application/json; charset=utf-8", bytes.NewBufferString(string(o)))
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	defer res.Body.Close()
-
-	fmt.Println(string(requestBody))
-	fmt.Println(string(o))
-	fmt.Println(s)
-	fmt.Println(a)
-	fmt.Println(j)
-
 
 	m := map[string]string{"msg": fmt.Sprintf("Order created with ID: %v", uuid.String())}
 	e := json.NewEncoder(w)
