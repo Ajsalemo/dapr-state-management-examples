@@ -9,31 +9,17 @@ import (
 	"io"
 
 	"github.com/google/uuid"
+	constants "github.com/azureossd/dapr-state-management-examples/go/http/constants"
 )
 
 func CreateStateController(w http.ResponseWriter, r *http.Request) {
 	uuid := uuid.New()
-	// Create these structs to mimic the shape of the incoming POST request
-	// So we can marshal this struct into JSON
-	type OrderData struct {
-		OrderId string `json:"orderId"`
-	}
-
-	type Order struct {
-		Data OrderData `json:"data"`
-	}
-
-	type State struct {
-		Key   string `json:"key"`
-		Value Order `json:"value"`
-	}
-
 	requestBody, err := io.ReadAll(r.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
 	// Give the "Key" a default value of a uuid
-	state := []State{
+	state := []constants.State{
 		{
 			Key: uuid.String(),
 		},
