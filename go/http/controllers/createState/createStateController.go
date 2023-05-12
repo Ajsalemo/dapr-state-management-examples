@@ -40,7 +40,7 @@ func CreateStateController(w http.ResponseWriter, r *http.Request) {
 	}
 	// Unmarshal the request body into the struct
 	json.Unmarshal(requestBody, &state[0].Value)
-	// Marshal the Struct Array into JSON to send in the POST request to DApr
+	// Marshal the Struct Array into JSON to send in the POST request to Dapr
 	t, err := json.Marshal(state)
 	// If there is an error marhsalling state, return it
 	if err != nil {

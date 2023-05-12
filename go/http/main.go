@@ -5,12 +5,14 @@ import (
 	"log"
 
 	index "github.com/azureossd/dapr-state-management-examples/go/http/controllers/index"
-	createState "github.com/azureossd/dapr-state-management-examples/go/http/controllers/createState" 
+	createState "github.com/azureossd/dapr-state-management-examples/go/http/controllers/createState"
+	getState "github.com/azureossd/dapr-state-management-examples/go/http/controllers/getState"  
 )
 
 func main() {
 	http.HandleFunc("/", index.IndexController)
 	http.HandleFunc("/order/create", createState.CreateStateController)
+	http.HandleFunc("/order/get/", getState.GetStateController)
 
 	log.Println("Server listening on port 8080.")
 	err := http.ListenAndServe(":8080", nil)
