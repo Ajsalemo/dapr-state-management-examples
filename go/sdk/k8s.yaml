@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-service
+spec:
+  selector:
+    app: go-app
+  ports:
+    - protocol: TCP
+      port: 80
+      nodePort: 31118
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-deployment
+  labels:
+    app: go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-app
+  template:
+    metadata:
+      labels:
+        app: go-app
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "go-app"
+        dapr.io/app-port: "8080"
+    spec:
+      containers:
+      - name: go
+        image: dapr-state-management-examples-go-sdk:latest  
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
