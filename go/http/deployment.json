@@ -70,7 +70,7 @@
         },
         {
             "type": "Microsoft.App/managedEnvironments",
-            "apiVersion": "2022-03-01",
+            "apiVersion": "2022-10-01",
             "name": "[parameters('environment_name')]",
             "location": "[parameters('location')]",
             "dependsOn": [
@@ -90,7 +90,7 @@
                 {
                     "type": "daprComponents",
                     "name": "statestore",
-                    "apiVersion": "2022-03-01",
+                    "apiVersion": "2022-10-01",
                     "dependsOn": [
                         "[resourceId('Microsoft.App/managedEnvironments/', parameters('environment_name'))]"
                     ],
@@ -118,7 +118,7 @@
         },
         {
             "type": "Microsoft.App/containerApps",
-            "apiVersion": "2022-03-01",
+            "apiVersion": "2022-10-01",
             "name": "goapphttp",
             "location": "[parameters('location')]",
             "dependsOn": [
