@@ -6,9 +6,11 @@ import (
 	"log"
 	"net/http"
 	"io"
+	"context"
 
 	"github.com/google/uuid"
 	constants "github.com/azureossd/dapr-state-management-examples/go/sdk/constants"
+	d "github.com/azureossd/dapr-state-management-examples/go/sdk/dapr"
 )
 
 func CreateStateController(w http.ResponseWriter, r *http.Request) {
@@ -31,8 +33,11 @@ func CreateStateController(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
-	constants.DaprCreateState(uuid.String(), t)
+
+	ctx := context.Background()
+	// Create state with the Dapr SDK imported from the "d" package
+	d.DaprClient().SaveState(ctx, "statestore", uuid.String(), t, nil)
+	defer d.DaprClient().Close()
 
 	m := map[string]string{"msg": fmt.Sprintf("Order created with ID: %v", uuid.String())}
 	e := json.NewEncoder(w)
