@@ -14,3 +14,4 @@ az deployment group create \
       storageAccountKey="$STORAGE_ACCOUNT_KEY" \
       storageAccountName="$STORAGE_ACCOUNT_NAME" \
       storageAccountContainer="$STORAGE_ACCOUNT_CONTAINER"
+
