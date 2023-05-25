@@ -3,6 +3,7 @@ package getState
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -13,11 +14,7 @@ import (
 func GetStateController(w http.ResponseWriter, r *http.Request) {
 	uuid := strings.TrimPrefix(r.URL.Path, "/order/get/")
 
-	state := []constants.State{
-		{
-			Key: uuid,
-		},
-	}
+	state := []constants.State{}
 
 	ctx := context.Background()
 	s, err := d.DaprClient().GetState(ctx, "statestore", uuid, nil)
@@ -28,8 +25,8 @@ func GetStateController(w http.ResponseWriter, r *http.Request) {
 
 	defer d.DaprClient().Close()
 	// Unmarshal the request body into the struct
-	json.Unmarshal(s.Value, &state[0].Value)
-
+	json.Unmarshal(s.Value, &state[0])
+	fmt.Println(string(s.Value)) 
 	e := json.NewEncoder(w)
-	e.Encode(state)
+	e.Encode(s.Value)
 }
