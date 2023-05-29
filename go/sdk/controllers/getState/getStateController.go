@@ -25,8 +25,8 @@ func GetStateController(w http.ResponseWriter, r *http.Request) {
 
 	defer d.DaprClient().Close()
 	// Unmarshal the request body into the struct
-	json.Unmarshal(s.Value, &state[0])
+	json.Unmarshal(s.Value, &state)
 	fmt.Println(string(s.Value)) 
 	e := json.NewEncoder(w)
-	e.Encode(s.Value)
+	e.Encode(state)
 }
