@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Ramsey\Uuid\Rfc4122\UuidV4;
 
 class OrderCreateController extends Controller
 {
