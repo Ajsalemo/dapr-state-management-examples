@@ -18,7 +18,7 @@ class OrderCreateController extends Controller
         array_push($structuredArr, $value);
 
         // Make a POST request to the Dapr sidecar
-        $d = Http::post('http://localhost:3500/v1.0/state/statestore', $structuredArr);
+        Http::post('http://localhost:3500/v1.0/state/statestore', $structuredArr);
         $msg = "Order created with ID: " . $uuid;
 
         return $msg;
