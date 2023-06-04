@@ -23,6 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
     Route::post('/create', ['as' => 'create', OrderCreateController::class, 'orderCreate']);
-    Route::get('/get/{id}', ['as' => 'get', OrderGetController::class, 'orderGet']);
-    Route::get('/delete', ['as' => 'delete', OrderDeleteController::class, 'orderDelete']);
+    Route::get('/get/{uuid}', ['as' => 'get', OrderGetController::class, 'orderGet']);
+    Route::get('/delete/{uuid}', ['as' => 'delete', OrderDeleteController::class, 'orderDelete']);
 });
