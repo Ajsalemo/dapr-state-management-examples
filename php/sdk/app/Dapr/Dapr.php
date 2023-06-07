@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Library;
+namespace App\Dapr;
 
 use Dapr\Client\DaprClient;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Library\Dapr;
+use App\Dapr\Dapr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

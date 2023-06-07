@@ -40,7 +40,7 @@ spec:
         - name: APP_KEY
           value: "base64:NhBNyadmoOUBv4FX3YSwsl8akMOWfAiDkapyP5LK3jA="
         - name: APP_DEBUG
-          value: "true"
+          value: "false"
         ports:
         - containerPort: 80
         resources:
