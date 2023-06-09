@@ -14,12 +14,12 @@ class OrderCreateController extends Controller
         $res = $request->all();
 
         $structuredArr = array();
-        $value = array('key' => $uuid, 'value' => $res);
+        $value = array('key' => $uuid->__toString(), 'value' => $res);
         array_push($structuredArr, $value);
 
         // Make a POST request to the Dapr sidecar
         $d = new Dapr();
-        $d->customDaprClientBuilder()->saveStateAsync("statestore", $uuid, $structuredArr);
+        $d->customDaprClientBuilder()->saveState("statestore", $uuid, $structuredArr);
         $msg = "Order created with ID: " . $uuid;
 
         return $msg;
