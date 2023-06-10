@@ -10,7 +10,7 @@ class OrderGetController extends Controller
         $d = new Dapr();
         $r = $d->customDaprClientBuilder()->getState("statestore", $uuid);
 
-        $j = json_decode(print_r($r->data));
+        $j = json_encode($r);
         return $j;
     }
 }
