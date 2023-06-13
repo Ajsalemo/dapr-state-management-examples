@@ -39,6 +39,7 @@ spec:
         env:
         - name: APP_KEY
           value: "base64:NhBNyadmoOUBv4FX3YSwsl8akMOWfAiDkapyP5LK3jA="
+          # Turn to "true" for debugging
         - name: APP_DEBUG
           value: "false"
         ports:

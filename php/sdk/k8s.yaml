@@ -39,8 +39,9 @@ spec:
         env:
         - name: APP_KEY
           value: "base64:9enKR1JEyuPSjZJHNe8A38GE0sAEwLDZbVJ+8kWVcz0="
+          # Turn to "true" for debugging
         - name: APP_DEBUG
-          value: "true"
+          value: "false"
         ports:
         - containerPort: 80
         resources:
