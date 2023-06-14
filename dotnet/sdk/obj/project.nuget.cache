@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "HxPBG/KnnnYPYvtkR0blBxlwMG3upt1FpAW0jEjhbsH3/PyDPQserhqVFQ+V5JqmFTsMt7EvTTRgSJB47OP2Zg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ansalemo\\OneDrive - Microsoft\\Documents\\Code\\Github\\dapr-state-management-examples\\dotnet\\sdk\\sdk.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ansalemo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.7\\microsoft.aspnetcore.openapi.7.0.7.nupkg.sha512",
+    "C:\\Users\\ansalemo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\ansalemo\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\ansalemo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\ansalemo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\ansalemo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\ansalemo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
