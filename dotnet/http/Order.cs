@@ -2,5 +2,10 @@ namespace http;
 
 public class Order
 {
-    public object? Data { get; set; }
+    public Values? Data { get; set; }
+
+    public static implicit operator Order(string v)
+    {
+        throw new NotImplementedException();
+    }
 }
