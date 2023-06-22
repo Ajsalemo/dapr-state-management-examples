@@ -8,6 +8,11 @@ namespace http.Controllers;
 [Route("order/[controller]")]
 public class CreateController : ControllerBase
 {
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    public CreateController(IHttpClientFactory httpClientFactory) =>
+        _httpClientFactory = httpClientFactory;
+
     [HttpPost(Name = "OrderCreate")]
     public async Task<string> PostAsync()
     {
@@ -20,10 +25,12 @@ public class CreateController : ControllerBase
         List<State> list = new List<State>();
         list.Add(state);
 
-        foreach (var item in list)
-        {
-            Console.WriteLine("[{0}]", string.Join(", ", item.Value));
-        }
+        var json = JsonSerializer.Serialize(list);
+
+        var httpClient = _httpClientFactory.CreateClient("daprClient");
+        using var httpPostMessage = await httpClient.PostAsync("", new StringContent(json));
+        Console.WriteLine(httpPostMessage);
+
         return "POST /order/create";
     }
 }

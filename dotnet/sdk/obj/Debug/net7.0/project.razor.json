@@ -1,6 +1,6 @@
 {
-  "SerializedFilePath": "c:\\Users\\ansalemo\\OneDrive - Microsoft\\Documents\\Code\\Github\\dapr-state-management-examples\\dotnet\\http\\obj\\Debug\\net7.0\\project.razor.json",
-  "FilePath": "c:\\Users\\ansalemo\\OneDrive - Microsoft\\Documents\\Code\\Github\\dapr-state-management-examples\\dotnet\\http\\http.csproj",
+  "SerializedFilePath": "c:\\Users\\ansalemo\\OneDrive - Microsoft\\Documents\\Code\\Github\\dapr-state-management-examples\\dotnet\\sdk\\obj\\Debug\\net7.0\\project.razor.json",
+  "FilePath": "c:\\Users\\ansalemo\\OneDrive - Microsoft\\Documents\\Code\\Github\\dapr-state-management-examples\\dotnet\\sdk\\sdk.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "7.0",
@@ -18642,7 +18642,7 @@
     ],
     "CSharpLanguageVersion": 1100
   },
-  "RootNamespace": "http",
+  "RootNamespace": "sdk",
   "Documents": [],
   "SerializationFormat": "0.3"
 }
