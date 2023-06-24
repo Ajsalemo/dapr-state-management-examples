@@ -38,8 +38,9 @@ public class CreateController : ControllerBase
 
         var httpClient = _httpClientFactory.CreateClient("daprClient");
         using var httpPostMessage = await httpClient.PostAsync("", data);
-        Console.WriteLine(httpPostMessage);
 
-        return "POST /order/create";
+        string message = "Order created with ID: " + g.ToString();
+
+        return message;
     }
 }
