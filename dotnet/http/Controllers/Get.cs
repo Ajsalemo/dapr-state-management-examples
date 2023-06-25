@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace http.Controllers;
 
@@ -12,12 +13,34 @@ public class GetController : ControllerBase
         _httpClientFactory = httpClientFactory;
 
     [HttpGet("{uuid}")]
-    public async Task<string> GetAsync(string uuid)
+    public async Task<string?> GetAsync(string uuid)
     {
-        var httpClient = _httpClientFactory.CreateClient("daprClient");
-        using var httpGetMessage = await httpClient.GetAsync(uuid);
-        Console.WriteLine(httpGetMessage.Content);
-        Console.WriteLine(httpClient);
-        return httpGetMessage.ToString();
+        try
+        {
+            var httpClient = _httpClientFactory.CreateClient("daprClient");
+            using var httpGetMessage = await httpClient.GetAsync(uuid);
+
+            var jsonResponse = await httpGetMessage.Content.ReadAsStringAsync();
+            var j = JsonSerializer.Deserialize<Order>(jsonResponse);
+
+            var state = new State
+            {
+                key = uuid,
+                value = j
+            };
+
+            List<State> arr = new List<State>();
+            arr.Add(state);
+            State[] stateArray = arr.ToArray<State>();
+            // Serealize the array to JSON and pass this into StringContent so it can be POSTed to the dapr sidecar
+            var json = JsonSerializer.Serialize(stateArray);
+
+            return json;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+            return ex.ToString();
+        }
     }
 }
