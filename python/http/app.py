@@ -30,16 +30,25 @@ def create_order():
         return jsonify({ "msg": f"Created order with Order ID: {id}" })
     except Exception as e:
         return jsonify({ "error": str(e) })
-    
+
+
+@app.route("/order/delete/<string:id>", methods=['DELETE'])
+def delete_order(id):
+    try:
+        requests.delete(f"{dapr_uri}/{dapr_state_store}/{id}")
+        
+        return jsonify({ "msg": f"Order deleted with Order ID: {id}" })
+    except Exception as e:
+        print(e)
+        return jsonify({ "error": str(e) })
+
 
 @app.route("/order/get/<string:id>")
 def get_order(id):
     try:
         r = requests.get(f"{dapr_uri}/{dapr_state_store}/{id}")
         
-        print(r.json())
         return jsonify({ "orders": r.json() })
     except Exception as e:
         print(e)
         return jsonify({ "error": str(e) })
-
