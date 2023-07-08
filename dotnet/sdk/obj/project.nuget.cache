@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ycXDJNzrqy4mjsVcmmaVf7ucwKiOa2PDCG1FyqMxPVI06D7B7PiS3oIuFa9/6IuP7hixqMyKf5WaTiKoClbvMw==",
+  "dgSpecHash": "QPlhSNCuDso1USFBKS4zNafnwSYLTBGO4V5CcfZVfuS4RCCagmr65phdWimB6Ws7Ikd1UfCByret2UN0PdaYFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ansalemo\\OneDrive - Microsoft\\Documents\\Code\\Github\\dapr-state-management-examples\\dotnet\\sdk\\sdk.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ansalemo\\.nuget\\packages\\dapr.aspnetcore\\1.11.0\\dapr.aspnetcore.1.11.0.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\dapr.client\\1.11.0\\dapr.client.1.11.0.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\google.api.commonprotos\\2.2.0\\google.api.commonprotos.2.2.0.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\google.protobuf\\3.15.0\\google.protobuf.3.15.0.nupkg.sha512",
@@ -18,6 +19,7 @@
     "C:\\Users\\ansalemo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "C:\\Users\\ansalemo\\.nuget\\packages\\system.io.pipelines\\4.7.2\\system.io.pipelines.4.7.2.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\system.net.http.json\\5.0.0\\system.net.http.json.5.0.0.nupkg.sha512",
     "C:\\Users\\ansalemo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"

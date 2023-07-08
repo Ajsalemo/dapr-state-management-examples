@@ -1,17 +1,20 @@
 using System.Text;
 using System.Text.Json;
+using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
 
-namespace http.Controllers;
+namespace sdk.Controllers;
 
 [ApiController]
 [Route("order/[controller]")]
 public class CreateController : ControllerBase
 {
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly DaprClient _daprClient;
 
-    public CreateController(IHttpClientFactory httpClientFactory) =>
-        _httpClientFactory = httpClientFactory;
+    public CreateController(DaprClient daprClient)
+    {
+        _daprClient = daprClient;
+    }
 
     [HttpPost(Name = "OrderCreate")]
     public async Task<string> PostAsync()
@@ -33,15 +36,9 @@ public class CreateController : ControllerBase
             List<State> arr = new List<State>();
             arr.Add(state);
             State[] stateArray = arr.ToArray<State>();
-            // Serialize the array to JSON and pass this into StringContent so it can be POSTed to the dapr sidecar
-            var json = JsonSerializer.Serialize(stateArray);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var httpClient = _httpClientFactory.CreateClient("daprClient");
-            using var httpPostMessage = await httpClient.PostAsync("", data);
+            await _daprClient.SaveStateAsync("statestore", g.ToString(), stateArray);
 
             string message = "Order created with ID: " + g.ToString();
-
             return message;
 
         }

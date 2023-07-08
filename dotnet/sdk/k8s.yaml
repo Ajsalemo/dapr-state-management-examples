@@ -4,11 +4,11 @@ metadata:
   name: dotnet-service
 spec:
   selector:
-    app: dotnet-http
+    app: dotnet-sdk
   ports:
     - protocol: TCP
       port: 80
-      nodePort: 31117
+      nodePort: 31112
       targetPort: 80
   type: NodePort
 ---
@@ -17,24 +17,24 @@ kind: Deployment
 metadata:
   name: dotnet-deployment
   labels:
-    app: dotnet-http
+    app: dotnet-sdk
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dotnet-http
+      app: dotnet-sdk
   template:
     metadata:
       labels:
-        app: dotnet-http
+        app: dotnet-sdk
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "dotnet-http"
+        dapr.io/app-id: "dotnet-sdk"
         dapr.io/app-port: "80"
     spec:
       containers:
-      - name: dotnet
-        image: dapr-state-management-examples-dotnet-http:latest  
+      - name: dotnet-sdk
+        image: dapr-state-management-examples-dotnet-sdk:latest  
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
