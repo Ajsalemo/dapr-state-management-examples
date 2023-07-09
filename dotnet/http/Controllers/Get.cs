@@ -32,7 +32,7 @@ public class GetController : ControllerBase
             List<State> arr = new List<State>();
             arr.Add(state);
             State[] stateArray = arr.ToArray<State>();
-            // Serealize the array to JSON and pass this into StringContent so it can be POSTed to the dapr sidecar
+            // Serialize the array to JSON
             var json = JsonSerializer.Serialize(stateArray);
 
             return json;
