@@ -1,9 +1,9 @@
 module github.com/azureossd/dapr-state-management-examples/go/sdk
 
-go 1.24.13
+go 1.26.0
 
 require (
-	github.com/dapr/go-sdk v1.14.1
+	github.com/dapr/go-sdk v1.14.2
 	github.com/google/uuid v1.6.0
 )
 
@@ -11,7 +11,7 @@ require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/dapr/dapr v1.17.0 // indirect
-	github.com/dapr/durabletask-go v0.11.0 // indirect
+	github.com/dapr/durabletask-go v0.11.3 // indirect
 	github.com/dapr/kit v0.17.0 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
